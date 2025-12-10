@@ -1274,25 +1274,24 @@
 
           <!-- CENTRAL VISUAL: exploded view + 3D model -->
           <div class="smm-visual">
-            <figure class="smm-image-frame">
-              <img src="SMM-EXPLODED.png" alt="Exploded view of the Subsurface Microbial Module" class="smm-image" />
-            </figure>
+  <div class="smm-image-wrapper">
+    <figure class="smm-image-frame">
+      <img src="SMM-EXPLODED.png" alt="Exploded view of the Subsurface Microbial Module" class="smm-image" />
+    </figure>
+  </div>
+</div>
 
-            <div class="smm-3d-block">
-              <!-- Using a known-good demo model to avoid texture loading errors.
-                   When your own smm-module.glb is re-exported with embedded textures, change the src below to:
-                   src="https://raw.githubusercontent.com/Ares777nonnt/ARCANA-website/main/models/smm-module.glb" -->
-              <model-viewer
-                src="https://raw.githubusercontent.com/Ares777nonnt/ARCANA-website/main/models/smm-module.glb"
-                alt="Interactive 3D model of the SMM"
-                auto-rotate
-                camera-controls
-                ar
-                disable-zoom="false"
-                class="smm-model-viewer">
-              </model-viewer>
-              
-            </div>
+<div class="smm-3d-block">
+  <model-viewer
+    src="https://raw.githubusercontent.com/Ares777nonnt/ARCANA-website/main/models/smm-module.glb"
+    alt="Interactive 3D model of the SMM"
+    auto-rotate
+    camera-controls
+    ar
+    disable-zoom="false"
+    class="smm-model-viewer">
+  </model-viewer>
+</div>
           </div>
 
           <!-- RIGHT CALLOUTS: operations & role -->
