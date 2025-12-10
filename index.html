@@ -843,6 +843,13 @@
     }
 
     /* Science section */
+    @media(max-width:768px){
+      .science-grid{
+        grid-template-columns:minmax(0,1fr);
+      }
+    }
+
+    /* Science section */ */
     .science-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
@@ -1034,6 +1041,48 @@
     html {
       scroll-behavior: smooth;
     }
+      /* FULL MOBILE OPTIMIZATION */
+    @media(max-width:600px){
+      body{font-size:14px;}
+      section{padding:2.5rem 0;}
+      .container{width:100%; padding:0 1.2rem;}
+      .section-title{font-size:1.35rem;}
+      .section-description{font-size:0.9rem;}
+
+      /* Hero */
+      .hero{padding:3rem 0 2rem;}
+      .hero-title{font-size:2rem; letter-spacing:0.15em;}
+      .hero-subtitle{font-size:0.75rem; letter-spacing:0.18em;}
+      .hero-text{font-size:0.85rem;}
+      .hero-badges .badge{font-size:0.7rem; padding:0.28rem 0.7rem;}
+
+      /* Mission */
+      .grid-2{grid-template-columns:minmax(0,1fr); gap:1.6rem;}
+      .card{padding:1.2rem 1.3rem;}
+      .card h3{font-size:0.9rem;}
+      .card p{font-size:0.85rem;}
+
+      /* SMM */
+      .smm-layout{grid-template-columns:minmax(0,1fr); gap:1.5rem;}
+      .smm-layer-caption{font-size:0.75rem;}
+      .smm-badge{font-size:0.65rem; padding:0.2rem 0.55rem;}
+      .smm-system{font-size:0.78rem;}
+      .smm-pod{padding:1rem;}
+
+      /* Roadmap */
+      .phase-title{font-size:0.85rem;}
+      .phase-text{font-size:0.78rem;}
+
+      /* Science */
+      .science-grid{grid-template-columns:minmax(0,1fr);}  
+
+      /* Contact */
+      .cta-card{padding:1.2rem 1.3rem;}
+      .cta-title{font-size:1.1rem;}
+      .cta-text{font-size:0.85rem;}
+      .cta-form input, .cta-form textarea{font-size:0.85rem; padding:0.6rem 0.8rem;}
+    }
+
   </style>
 </head>
 <body>
@@ -1051,7 +1100,7 @@
 
       <nav class="nav-links" aria-label="Primary">
         <a href="#mission">Mission</a>
-        <a href="#smm">SMM Module</a>
+        <a href="#smm-module">SMM Module</a>
         <a href="#roadmap">Roadmap</a>
         <a href="#science">Science</a>
         <a href="#contact" class="nav-cta">
