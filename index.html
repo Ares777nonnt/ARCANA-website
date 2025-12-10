@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A.R.C.A.N.A. Space Agency</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050409;
+      --bg-alt: #0b0f16;
+      --accent: #ffb55a;
+      --accent-soft: rgba(255, 181, 90, 0.16);
+      --accent-strong: #ff8a3c;
+      --text: #f5f5f7;
+      --text-muted: #a6a8b5;
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --card-bg: rgba(9, 15, 25, 0.88);
+      --danger: #ff4b81;
+      --success: #66f0a9;
+      --roadmap-line: rgba(255, 255, 255, 0.18);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.65);
+      --nav-height: 70px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 0 0, #382b54 0, #050409 45%) fixed;
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      overflow-x: hidden;
+    }
+
+    /* Layout utility */
+    .container {
+      width: min(1120px, 100% - 2.5rem);
+      margin: 0 auto;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5,4,9,0.96), rgba(5,4,9,0.75), transparent);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 20% 20%, #ffefc4, transparent 55%),
+        radial-gradient(circle at 80% 80%, #ff8a3c, transparent 55%),
+        radial-gradient(circle at 0 100%, #43ffb1, transparent 60%);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.8), 0 14px 40px rgba(0,0,0,0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      inset: 26% 24%;
+      border-radius: 999px;
+      border: 1px solid rgba(9, 15, 25, 0.85);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+    }
+
+    .logo-text-main {
+      font-family: "Orbitron", system-ui;
+      font-size: 1.05rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .logo-text-sub {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.18s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+      border-radius: 999px;
+      transition: width 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.1), transparent 50%),
+                  linear-gradient(120deg, rgba(255,255,255,0.05), transparent);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+
+    .nav-cta span.icon {
+      font-size: 0.9rem;
+    }
+
+    /* Mobile nav */
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        inset: var(--nav-height) 0 auto 0;
+        padding: 1rem 1.3rem 1.3rem;
+        background: radial-gradient(circle at 0 0, #382b54 0, #050409 55%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      .nav-cta {
+        margin-top: 0.3rem;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 4.5rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.22rem 0.85rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, rgba(255,181,90,0.25), transparent 50%),
+                  rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 12px rgba(102,240,169,0.9);
+    }
+
+    .hero-title {
+      margin-top: 1.4rem;
+      font-family: "Orbitron", system-ui;
+      font-size: clamp(2.4rem, 4vw, 2.9rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+
+    .hero-subtitle {
+      margin-top: 0.7rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero-text {
+      margin-top: 1.4rem;
+      max-width: 34rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.6rem;
+    }
+
+    .badge {
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      background: rgba(5,4,9,0.9);
+    }
+
+    .badge strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.8rem 1.6rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease, border-color 0.1s ease;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 0 0, #ffe7b6 0, #ff8a3c 40%, #ff4b81 100%);
+      color: #241106;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.8);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.85);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(255,255,255,0.22);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.38);
+      color: var(--text);
+    }
+
+    .hero-meta {
+      margin-top: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.73rem;
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.2rem 1.3rem;
+      background:
+        radial-gradient(circle at 0 0, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255,181,90,0.25), transparent 55%),
+        var(--card-bg);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.19em;
+      color: var(--text-muted);
+    }
+
+    .hero-card-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(5,4,9,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-card-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--danger);
+      box-shadow: 0 0 14px rgba(255,75,129,0.9);
+    }
+
+    .hero-poster-frame {
+      margin-top: 0.3rem;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.1), transparent 45%);
+      max-height: 260px;
+    }
+
+    .hero-poster-frame img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .hero-card-footer {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+    }
+
+    .hero-stat {
+      text-align: right;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: -26% -10%;
+      border-radius: 999px;
+      border: 1px dashed rgba(255,255,255,0.12);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(255,181,90,0.9);
+      top: 18%;
+      right: 10%;
+    }
+
+    .hero-floating-label {
+      position: absolute;
+      bottom: -0.7rem;
+      right: 0.2rem;
+      transform: translateY(100%);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        padding-top: 3.8rem;
+      }
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-visual {
+        order: -1;
+      }
+      .hero-poster-frame {
+        max-height: none;
+      }
+      .hero-floating-label {
+        display: none;
+      }
+    }
+
+    /* Generic sections */
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+      text-align: left;
+    }
+
+    .section-kicker {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: "Orbitron", system-ui;
+      font-size: 1.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-description {
+      color: var(--text-muted);
+      max-width: 40rem;
+      font-size: 0.96rem;
+    }
+
+    /* Mission section */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 1.6rem 1.7rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .key-points {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .key-point {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .key-point-icon {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: 0.38rem;
+    }
+
+    .mission-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.1rem;
+      font-size: 0.84rem;
+    }
+
+    .meta-label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .meta-value {
+      font-weight: 500;
+    }
+
+    @media (max-width: 860px) {
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* SMM section */
+    .smm-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .smm-stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .smm-pod {
+      position: relative;
+      padding: 1.1rem 1.3rem 1.2rem;
+      border-radius: var(--radius-md);
+      background:
+        radial-gradient(circle at 0 0, rgba(255,255,255,0.06), transparent 55%),
+        var(--bg-alt);
+      border: 1px solid var(--border-soft);
+    }
+
+    .smm-pod-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .smm-pod-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .smm-layer-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--text-muted);
+    }
+
+    .smm-layers {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+    }
+
+    .smm-layer {
+      height: 48px;
+      border-radius: 14px;
+      background-image: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .smm-layer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      mix-blend-mode: screen;
+      opacity: 0.75;
+    }
+
+    .smm-layer.layer-photo::before {
+      background: linear-gradient(135deg, #67ffb3, #21b3ff);
+    }
+
+    .smm-layer.layer-chemo::before {
+      background: linear-gradient(135deg, #ffcf73, #ff8a3c);
+    }
+
+    .smm-layer.layer-perch::before {
+      background: linear-gradient(135deg, #8f7bff, #ff4b81);
+    }
+
+    .smm-layer-caption {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .smm-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    .smm-badge {
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(5,4,9,0.9);
+      border: 1px solid rgba(255,255,255,0.16);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .smm-systems {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .smm-system {
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .smm-system-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* Roadmap */
+    .roadmap {
+      position: relative;
+    }
+
+    .roadmap-track {
+      position: relative;
+      margin-top: 1.8rem;
+    }
+
+    .roadmap-line {
+      position: absolute;
+      top: 32px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--roadmap-line), transparent);
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .roadmap-phase {
+      position: relative;
+    }
+
+    .phase-marker {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.3);
+      background: radial-gradient(circle at 40% 0, #ffe7b6, #ff8a3c 60%, #ff4b81);
+      box-shadow: 0 0 20px rgba(255,138,60,0.9);
+      margin-bottom: 0.8rem;
+    }
+
+    .phase-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .phase-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .phase-years {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .phase-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .roadmap-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .roadmap-line {
+        display: none;
+      }
+      .roadmap-phase {
+        padding-left: 0.2rem;
+        border-left: 1px dashed rgba(255,255,255,0.16);
+        margin-left: 0.4rem;
+      }
+      .phase-marker {
+        margin-left: -12px;
+      }
+    }
+
+    /* Science section */
+    .science-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .science-callout {
+      margin-top: 1.1rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      background: var(--accent-soft);
+      border: 1px solid rgba(255,181,90,0.4);
+      font-size: 0.86rem;
+      color: #fdf2dc;
+    }
+
+    .science-list {
+      margin-top: 1rem;
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .science-list li::before {
+      content: "▹";
+      margin-right: 0.4rem;
+      color: var(--accent);
+    }
+
+    .science-metric {
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .science-metric strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Poster/media */
+    .poster-card {
+      border-radius: var(--radius-lg);
+      padding: 1.3rem;
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.06), transparent 55%), var(--bg-alt);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .poster-caption {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .poster-actions {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .poster-actions a {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Contact / join */
+    .cta-section {
+      padding: 3.5rem 0 4.5rem;
+    }
+
+    .cta-card {
+      border-radius: 28px;
+      padding: 2rem 2.2rem;
+      border: 1px solid var(--border-soft);
+      background:
+        radial-gradient(circle at 0 0, rgba(255,181,90,0.16), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(102,240,169,0.16), transparent 55%),
+        var(--bg-alt);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .cta-title {
+      font-family: "Orbitron";
+      font-size: 1.35rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .cta-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+    }
+
+    .cta-form {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .cta-form label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .cta-form input,
+    .cta-form textarea {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(5,4,9,0.9);
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .cta-form textarea {
+      border-radius: 18px;
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .cta-form input:focus,
+    .cta-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(255,181,90,0.2);
+    }
+
+    .cta-footnote {
+      margin-top: 0.5rem;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .cta-card {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 1.7rem 1.6rem;
+      }
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 1.4rem 0 2.2rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="nav-left">
+        <div class="logo-mark" aria-hidden="true"></div>
+        <div>
+          <div class="logo-text-main">A.R.C.A.N.A.</div>
+          <div class="logo-text-sub">Arcadia Regolith Conditioning &amp; Neo-habitat Activation</div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#mission">Mission</a>
+        <a href="#smm">SMM Module</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#science">Science</a>
+        <a href="#contact" class="nav-cta">
+          <span class="icon">⬤</span> Join the Program
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-dot"></span>
+            Mars Terraforming Mission Architecture
+          </div>
+          <h1 class="hero-title">Arcadia Regolith Conditioning And Neo-habitat Activation</h1>
+          <p class="hero-subtitle">A.R.C.A.N.A. Space Agency · Western Arcadia Planitia</p>
+
+          <p class="hero-text">
+            A.R.C.A.N.A. is a mission architecture dedicated to gradually awakening the Martian regolith. 
+            By deploying engineered <strong>Subsurface Microbial Modules</strong> inside Arcadia domes, 
+            the agency aims to detoxify the soil, unlock water from shallow ice and prepare stable footholds 
+            for future robotic greenhouses and human-rated neo-habitats.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge"><strong>2025–2090</strong> · Terraforming Roadmap</div>
+            <div class="badge">Subsurface Microbial Module · SMM</div>
+            <div class="badge">Western Arcadia Planitia Target</div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#mission" class="btn-primary">
+              Explore the mission
+              <span>↗</span>
+            </a>
+            <a href="#contact" class="btn-ghost">
+              Collaborate with A.R.C.A.N.A.
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div>
+              <span class="label">Primary objective</span>
+              Progressive biological conditioning of Martian regolith for future habitats.
+            </div>
+            <div>
+              <span class="label">Key technologies</span>
+              Engineered extremophile consortia · SMM bioreactors · Robotic deployment.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div class="hero-card-title">Subsurface Microbial Module · SMM</div>
+              <div class="hero-card-pill">
+                <span class="hero-card-pill-dot"></span>
+                Field-ready prototype
+              </div>
+            </div>
+
+            <div class="hero-poster-frame">
+              <!-- Replace src with the path to your poster image -->
+              <img src="Poster-Habitability.png" alt="A.R.C.A.N.A. mission poster showing SMM pod and terraforming roadmap">
+            </div>
+
+            <div class="hero-card-footer">
+              <div class="hero-tagline">Arcadia domes · Western hemisphere</div>
+              <div class="hero-stat">
+                <strong>Phase I launch:</strong>
+                c. 2025 · Robotic SMM deployment
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-orbit" aria-hidden="true"></div>
+          <div class="hero-floating-label">concept art · Arcadia Regolith Conditioning · v1.0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section id="mission">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">About the Agency</div>
+          <h2 class="section-title">Our mission in Arcadia Planitia</h2>
+          <p class="section-description">
+            The A.R.C.A.N.A. Space Agency coordinates a multi-decadal effort to transform shallow Martian subsurfaces 
+            into biologically conditioned mantles, starting from the ice-rich volcanic domes of Western Arcadia Planitia. 
+            Here, subsurface ice, thermal buffering and basaltic regolith offer one of the most promising starting points 
+            for biological regolith engineering beyond Earth.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Strategic objectives</h3>
+            <p>
+              A.R.C.A.N.A. develops, tests and deploys modular bioreactors that can thrive in the chemically oxidizing, 
+              desiccated and nutrient-poor environment of the Martian near-surface. By leveraging extremophilic microbial 
+              consortia, we aim to:
+            </p>
+
+            <div class="key-points">
+              <div class="key-point">
+                <div class="key-point-icon"></div>
+                <div>Detoxify regolith by reducing perchlorates and other reactive oxidants.</div>
+              </div>
+              <div class="key-point">
+                <div class="key-point-icon"></div>
+                <div>Capture and slowly release water from sublimating subsurface ice.</div>
+              </div>
+              <div class="key-point">
+                <div class="key-point-icon"></div>
+                <div>Enhance bio-available nutrients through controlled weathering of basalt.</div>
+              </div>
+              <div class="key-point">
+                <div class="key-point-icon"></div>
+                <div>Build a stable, biologically active mantle to support robotic agriculture and, later, human habitats.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Mission architecture</h3>
+            <p>
+              The A.R.C.A.N.A. architecture is deliberately modular. SMM pods are deployed by rovers into pre-selected domes, 
+              where they remain sealed and self-contained while still exchanging gases, vapours and heat with the surrounding 
+              regolith. This balances biosecurity with long-term in situ terraforming.
+            </p>
+
+            <div class="mission-meta-grid">
+              <div>
+                <span class="meta-label">Primary theatre</span>
+                <div class="meta-value">Western Arcadia Planitia domes</div>
+              </div>
+              <div>
+                <span class="meta-label">Mission horizon</span>
+                <div class="meta-value">5 phases · ~2025–2090</div>
+              </div>
+              <div>
+                <span class="meta-label">Biosecurity</span>
+                <div class="meta-value">Confined, no uncontrolled dispersal</div>
+              </div>
+              <div>
+                <span class="meta-label">Partners</span>
+                <div class="meta-value">Planetary science labs · bioengineering teams · robotics</div>
+              </div>
+            </div>
+
+            <p class="science-metric">
+              <strong>Long-term vision:</strong> progressively link conditioned mantles into a network of 
+              <em>neo-habitats</em> — autonomous domes that can host robotic greenhouses and, ultimately, human explorers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SMM MODULE -->
+    <section id="smm">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Subsurface Microbial Module</div>
+          <h2 class="section-title">The engineered bioreactor at the heart of A.R.C.A.N.A.</h2>
+          <p class="section-description">
+            The Subsurface Microbial Module (SMM) is a vertically stratified bioreactor that houses extremophile consortia. 
+            Its architecture captures vapour from sublimating ice and redistributes it through micro-porous interfaces that 
+            slowly rehydrate a dormant payload of microorganisms, enabling long-term, low-rate microbial activity in the 
+            Martian subsurface.
+          </p>
+        </div>
+
+        <div class="smm-layout">
+          <div class="smm-stack">
+            <div class="smm-pod">
+              <div class="smm-pod-header">
+                <div class="smm-pod-title">Vertical Microbial Stack</div>
+                <div class="smm-layer-tag">Tri-layer consortia</div>
+              </div>
+
+              <p class="smm-layer-caption">
+                Each SMM pod contains three functional layers, optimized for light availability, redox gradients 
+                and contact with the surrounding regolith.
+              </p>
+
+              <div class="smm-layers">
+                <div>
+                  <div class="smm-layer layer-photo"></div>
+                  <div class="smm-layer-caption"><strong>Phototrophic cyanobacteria</strong><br>Far-red photosynthesis and EPS soil stabilization.</div>
+                </div>
+                <div>
+                  <div class="smm-layer layer-chemo"></div>
+                  <div class="smm-layer-caption"><strong>Mineral-weathering chemolithotrophs</strong><br>Dissolve basalt and release essential ions.</div>
+                </div>
+                <div>
+                  <div class="smm-layer layer-perch"></div>
+                  <div class="smm-layer-caption"><strong>Perchlorate-reducing bacteria</strong><br>Detoxify oxidized regolith horizons.</div>
+                </div>
+              </div>
+
+              <div class="smm-badge-row">
+                <div class="smm-badge">Confined ecosystem</div>
+                <div class="smm-badge">Passive energy capture</div>
+                <div class="smm-badge">Micro-porous interfaces</div>
+              </div>
+            </div>
+
+            <div class="smm-systems">
+              <div class="smm-system">
+                <div class="smm-system-icon">⌀</div>
+                <div>
+                  <strong>Controlled exchange with regolith.</strong><br>
+                  The shell allows diffusion of gases and vapours while retaining cells and complex organics, 
+                  preventing uncontrolled biological dispersal.
+                </div>
+              </div>
+              <div class="smm-system">
+                <div class="smm-system-icon">☾</div>
+                <div>
+                  <strong>Metabolic dormancy &amp; slow activation.</strong><br>
+                  Extremophile strains are delivered in a low-activity state, awakening gradually as temperature 
+                  and water availability oscillate with Martian diurnal cycles.
+                </div>
+              </div>
+              <div class="smm-system">
+                <div class="smm-system-icon">∞</div>
+                <div>
+                  <strong>Decadal-scale operation.</strong><br>
+                  SMM pods are designed for lifetimes measured in Martian decades, steadily conditioning their 
+                  surrounding regolith without requiring continuous power.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Engineering &amp; Operations</h3>
+            <p>
+              SMM deployment is handled by autonomous rovers operating inside selected Arcadia domes. Each pod is 
+              emplaced a few meters below the surface, in contact with shallow ice-bearing layers. Onboard telemetry 
+              provides low-bandwidth monitoring of internal pressure, temperature and key metabolic indicators.
+            </p>
+
+            <ul class="science-list">
+              <li>Fully self-contained bioreactor with replaceable cartridges.</li>
+              <li>Modular arrays allow fine control of biological loading per dome.</li>
+              <li>Failsafe modes include cold-trapping and chemical passivation.</li>
+              <li>All microbial strains are selected from naturally extremophilic lineages and remain confined to the pod.</li>
+            </ul>
+
+            <p class="science-metric">
+              <strong>Target performance:</strong> measurable reduction in perchlorate content and improved 
+              water retention within a few meters of each SMM after &lt; 10 Martian years of operation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap" class="roadmap">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Terraforming Roadmap · 2025–2090</div>
+          <h2 class="section-title">Five-phase mission pathway</h2>
+          <p class="section-description">
+            A.R.C.A.N.A. follows a staged strategy, from initial robotic deployment to the activation of 
+            autonomous neo-habitats. Each phase builds on the biological and geochemical legacy of the previous one.
+          </p>
+        </div>
+
+        <div class="roadmap-track">
+          <div class="roadmap-line"></div>
+          <div class="roadmap-grid">
+            <div class="roadmap-phase">
+              <div class="phase-marker"></div>
+              <div class="phase-label">Phase 1</div>
+              <div class="phase-title">Pioneer SMM Deployment</div>
+              <div class="phase-years">c. 2025–2035</div>
+              <p class="phase-text">
+                Robotic scouts emplace the first generation of SMM pods in a subset of Arcadia domes, 
+                validating drilling, emplacement and biosecurity protocols.
+              </p>
+            </div>
+
+            <div class="roadmap-phase">
+              <div class="phase-marker"></div>
+              <div class="phase-label">Phase 2</div>
+              <div class="phase-title">Microbial Mantle Formation</div>
+              <div class="phase-years">c. 2035–2050</div>
+              <p class="phase-text">
+                Expanded arrays of SMM pods create overlapping spheres of influence, gradually forming a 
+                biologically conditioned mantle beneath the domes.
+              </p>
+            </div>
+
+            <div class="roadmap-phase">
+              <div class="phase-marker"></div>
+              <div class="phase-label">Phase 3</div>
+              <div class="phase-title">Enhanced Microbial Guilds</div>
+              <div class="phase-years">c. 2050–2070</div>
+              <p class="phase-text">
+                Additional functional guilds are introduced within the pods to improve nutrient cycling, 
+                carbon storage and soil structure while remaining confined.
+              </p>
+            </div>
+
+            <div class="roadmap-phase">
+              <div class="phase-marker"></div>
+              <div class="phase-label">Phase 4</div>
+              <div class="phase-title">Robotic Greenhouses</div>
+              <div class="phase-years">c. 2070–2080</div>
+              <p class="phase-text">
+                Surface domes host fully robotic greenhouses anchored into the conditioned mantle, testing 
+                crop performance and closed-loop life-support components.
+              </p>
+            </div>
+
+            <div class="roadmap-phase">
+              <div class="phase-marker"></div>
+              <div class="phase-label">Phase 5</div>
+              <div class="phase-title">Neo-habitat Activation</div>
+              <div class="phase-years">c. 2080–2090+</div>
+              <p class="phase-text">
+                Selected domes transition into neo-habitats: semi-autonomous stations with robust soil, 
+                stable water reservoirs and the infrastructure needed to support future human missions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCIENCE RATIONALE -->
+    <section id="science">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Background &amp; Scientific Rationale</div>
+          <h2 class="section-title">Why Western Arcadia Planitia?</h2>
+          <p class="section-description">
+            Mars’ surface is chemically oxidizing, desiccated and hostile to long-term biological activity. 
+            Yet Western Arcadia Planitia hosts shallow subsurface ice and positive-relief volcanic domes, 
+            which together provide thermal buffering, mechanical stability and episodic availability of liquid water.
+          </p>
+        </div>
+
+        <div class="science-grid">
+          <div>
+            <div class="card">
+              <h3>From hostile regolith to living mantle</h3>
+              <p>
+                Daily sublimation cycles in Arcadia create transient films of water around ice-rich layers. 
+                These niches resemble terrestrial endolithic habitats and offer a realistic starting point for 
+                biologically assisted regolith conditioning.
+              </p>
+
+              <div class="science-callout">
+                A.R.C.A.N.A. does <strong>not</strong> aim at global terraforming. Instead, it focuses on creating 
+                localized, controllable pockets of habitability — stepping stones for science, technology 
+                demonstrations and, eventually, exploration.
+              </div>
+
+              <ul class="science-list">
+                <li>Study long-term microbial survival under Martian radiation and low pressure.</li>
+                <li>Quantify how biotic processes reshape porosity, chemistry and water retention.</li>
+                <li>Benchmark different extremophile consortia for in situ resource utilization.</li>
+                <li>Inform planetary protection policy with real, confined field data.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <div class="poster-card">
+              <img src="Poster-Habitability.png" alt="Concept poster of A.R.C.A.N.A. showing the SMM pod and the terraforming roadmap">
+              <div class="poster-caption">
+                <div>
+                  A.R.C.A.N.A. mission poster — concept visualization of SMM pods deployed inside Western Arcadia domes.
+                </div>
+                <div class="poster-actions">
+                  <!-- Update hrefs with real files if available -->
+                  <a href="#" title="Download high-resolution poster (placeholder)">Download Poster</a>
+                  <a href="#contact">Request media kit</a>
+                </div>
+              </div>
+            </div>
+
+            <p class="science-metric">
+              <strong>Scientific lead:</strong> A.R.C.A.N.A. Planetary Habitability Program · cross-disciplinary teams 
+              in microbiology, geochemistry, robotics and mission design.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / JOIN -->
+    <section id="contact" class="cta-section">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <div class="cta-title">Join the A.R.C.A.N.A. initiative</div>
+            <p class="cta-text">
+              A.R.C.A.N.A. welcomes collaborations with research groups, space agencies, private partners and students 
+              interested in astrobiology, regolith engineering, mission architecture and planetary protection. 
+              Share your expertise or propose a payload concept, and we will get back to you.
+            </p>
+          </div>
+
+          <form class="cta-form">
+            <div>
+              <label for="name">Name / Institution</label>
+              <input id="name" name="name" type="text" placeholder="e.g. Arcadia Institute of Planetary Sciences" />
+            </div>
+            <div>
+              <label for="email">Contact email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.org" />
+            </div>
+            <div>
+              <label for="message">Message / proposal</label>
+              <textarea id="message" name="message" placeholder="Tell us how you would like to contribute to A.R.C.A.N.A."></textarea>
+            </div>
+            <button type="submit" class="btn-primary">
+              Send message
+              <span>➝</span>
+            </button>
+            <p class="cta-footnote">
+              Form is currently a static placeholder — connect it to your preferred backend or form service to start receiving submissions.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> A.R.C.A.N.A. Space Agency · Arcadia Regolith Conditioning And Neo-habitat Activation.</div>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="#science">Science</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    // Close nav on link click (mobile)
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.tagName === "A" && navLinks.classList.contains("show")) {
+        navLinks.classList.remove("show");
+      }
+    });
+
+    // Dynamic year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
