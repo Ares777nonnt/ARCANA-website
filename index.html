@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -616,147 +615,123 @@
     }
 
     /* SMM section */
-    @media(max-width:768px){
-      .smm-layout{
-        grid-template-columns:minmax(0,1fr);
-      }
-      .smm-stack{
-        order:2;
-      }
-      .smm-image, model-viewer{
-        width:100%; height:auto;
-      }
+    .smm-section {
+      padding: 4rem 0;
+      background: radial-gradient(circle at 0 0, rgba(255,181,90,0.045), transparent 60%);
     }
-    /* SMM section */
-    .smm-layout {
+
+    .smm-wrapper {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.3fr) minmax(0, 1.1fr);
       gap: 2rem;
       align-items: center;
     }
 
-    .smm-stack {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .smm-pod {
-      position: relative;
-      padding: 1.1rem 1.3rem 1.2rem;
-      border-radius: var(--radius-md);
-      background:
-        radial-gradient(circle at 0 0, rgba(255,255,255,0.06), transparent 55%),
-        var(--bg-alt);
-      border: 1px solid var(--border-soft);
-    }
-
-    .smm-pod-header {
+    .smm-callouts {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.65rem;
+      flex-direction: column;
+      gap: 1.25rem;
     }
 
-    .smm-pod-title {
+    .smm-callout {
+      position: relative;
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--radius-md);
+      background: rgba(9, 15, 25, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .smm-callout h3 {
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
+      margin-bottom: 0.25rem;
+      color: var(--accent);
     }
 
-    .smm-layer-tag {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
+    .smm-callouts-left .smm-callout::after,
+    .smm-callouts-right .smm-callout::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 72px;
+      height: 1px;
+      opacity: 0.9;
+      background: linear-gradient(90deg, rgba(255,181,90,0.05), rgba(255,181,90,0.9));
+    }
+
+    .smm-callouts-left .smm-callout::after {
+      right: -72px;
+    }
+
+    .smm-callouts-right .smm-callout::after {
+      left: -72px;
+      background: linear-gradient(90deg, rgba(255,181,90,0.9), rgba(255,181,90,0.05));
+    }
+
+    .smm-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .smm-image-frame {
+      margin: 0;
+      padding: 1rem;
+      border-radius: 22px;
+      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.1), transparent 55%), var(--bg-alt);
       border: 1px solid rgba(255,255,255,0.18);
-      color: var(--text-muted);
+      box-shadow: var(--shadow-soft);
     }
 
-    .smm-layers {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.6rem;
-      margin-top: 0.6rem;
+    .smm-image {
+      border-radius: 18px;
     }
 
-    .smm-layer {
-      height: 48px;
-      border-radius: 14px;
-      background-image: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      position: relative;
+    .smm-3d-block {
+      width: 100%;
+      border-radius: 22px;
+      padding: 1rem 1.1rem 1.25rem;
+      background: radial-gradient(circle at 0 0, rgba(102,240,169,0.18), transparent 60%), var(--bg-alt);
+      border: 1px solid rgba(180,230,255,0.35);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .smm-model-viewer {
+      width: 100%;
+      height: 360px;
+      border-radius: 18px;
+      background: radial-gradient(circle at center, #121826, #050409 70%);
       overflow: hidden;
     }
 
-    .smm-layer::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      mix-blend-mode: screen;
-      opacity: 0.75;
-    }
-
-    .smm-layer.layer-photo::before {
-      background: linear-gradient(135deg, #67ffb3, #21b3ff);
-    }
-
-    .smm-layer.layer-chemo::before {
-      background: linear-gradient(135deg, #ffcf73, #ff8a3c);
-    }
-
-    .smm-layer.layer-perch::before {
-      background: linear-gradient(135deg, #8f7bff, #ff4b81);
-    }
-
-    .smm-layer-caption {
-      margin-top: 0.4rem;
+    .smm-3d-caption {
+      margin-top: 0.7rem;
       font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .smm-badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
-      font-size: 0.75rem;
-    }
-
-    .smm-badge {
-      padding: 0.28rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(5,4,9,0.9);
-      border: 1px solid rgba(255,255,255,0.16);
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-muted);
     }
 
-    .smm-systems {
-      display: grid;
-      gap: 0.8rem;
-      margin-top: 1rem;
+    @media (max-width: 1024px) {
+      .smm-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .smm-callouts-left .smm-callout::after,
+      .smm-callouts-right .smm-callout::after {
+        display: none;
+      }
     }
 
-    .smm-system {
-      display: flex;
-      gap: 0.9rem;
-      align-items: flex-start;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .smm-system-icon {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
+    @media (max-width: 600px) {
+      .smm-model-viewer {
+        height: 260px;
+      }
     }
 
     /* Roadmap */
@@ -843,13 +818,12 @@
     }
 
     /* Science section */
-    @media(max-width:768px){
-      .science-grid{
-        grid-template-columns:minmax(0,1fr);
+    @media (max-width: 768px) {
+      .science-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    /* Science section */ */
     .science-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
@@ -1041,49 +1015,48 @@
     html {
       scroll-behavior: smooth;
     }
-      /* FULL MOBILE OPTIMIZATION */
-    @media(max-width:600px){
-      body{font-size:14px;}
-      section{padding:2.5rem 0;}
-      .container{width:100%; padding:0 1.2rem;}
-      .section-title{font-size:1.35rem;}
-      .section-description{font-size:0.9rem;}
+
+    /* FULL MOBILE OPTIMIZATION */
+    @media (max-width: 600px) {
+      body { font-size: 14px; }
+      section { padding: 2.5rem 0; }
+      .container { width: 100%; padding: 0 1.2rem; }
+      .section-title { font-size: 1.35rem; }
+      .section-description { font-size: 0.9rem; }
 
       /* Hero */
-      .hero{padding:3rem 0 2rem;}
-      .hero-title{font-size:2rem; letter-spacing:0.15em;}
-      .hero-subtitle{font-size:0.75rem; letter-spacing:0.18em;}
-      .hero-text{font-size:0.85rem;}
-      .hero-badges .badge{font-size:0.7rem; padding:0.28rem 0.7rem;}
+      .hero { padding: 3rem 0 2rem; }
+      .hero-title { font-size: 2rem; letter-spacing: 0.15em; }
+      .hero-subtitle { font-size: 0.75rem; letter-spacing: 0.18em; }
+      .hero-text { font-size: 0.85rem; }
+      .hero-badges .badge { font-size: 0.7rem; padding: 0.28rem 0.7rem; }
 
       /* Mission */
-      .grid-2{grid-template-columns:minmax(0,1fr); gap:1.6rem;}
-      .card{padding:1.2rem 1.3rem;}
-      .card h3{font-size:0.9rem;}
-      .card p{font-size:0.85rem;}
+      .grid-2 { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+      .card { padding: 1.2rem 1.3rem; }
+      .card h3 { font-size: 0.9rem; }
+      .card p { font-size: 0.85rem; }
 
       /* SMM */
-      .smm-layout{grid-template-columns:minmax(0,1fr); gap:1.5rem;}
-      .smm-layer-caption{font-size:0.75rem;}
-      .smm-badge{font-size:0.65rem; padding:0.2rem 0.55rem;}
-      .smm-system{font-size:0.78rem;}
-      .smm-pod{padding:1rem;}
+      .smm-wrapper { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
 
       /* Roadmap */
-      .phase-title{font-size:0.85rem;}
-      .phase-text{font-size:0.78rem;}
+      .phase-title { font-size: 0.85rem; }
+      .phase-text { font-size: 0.78rem; }
 
       /* Science */
-      .science-grid{grid-template-columns:minmax(0,1fr);}  
+      .science-grid { grid-template-columns: minmax(0, 1fr); }
 
       /* Contact */
-      .cta-card{padding:1.2rem 1.3rem;}
-      .cta-title{font-size:1.1rem;}
-      .cta-text{font-size:0.85rem;}
-      .cta-form input, .cta-form textarea{font-size:0.85rem; padding:0.6rem 0.8rem;}
+      .cta-card { padding: 1.2rem 1.3rem; }
+      .cta-title { font-size: 1.1rem; }
+      .cta-text { font-size: 0.85rem; }
+      .cta-form input, .cta-form textarea { font-size: 0.85rem; padding: 0.6rem 0.8rem; }
     }
-
   </style>
+
+  <!-- 3D model viewer for the SMM section -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
   <header>
@@ -1267,101 +1240,71 @@
     </section>
 
     <!-- SMM MODULE -->
-    <section id="smm">
+    <section id="smm-module" class="smm-section">
       <div class="container">
         <div class="section-header">
           <div class="section-kicker">Subsurface Microbial Module</div>
           <h2 class="section-title">The engineered bioreactor at the heart of A.R.C.A.N.A.</h2>
           <p class="section-description">
-            The Subsurface Microbial Module (SMM) is a vertically stratified bioreactor that houses extremophile consortia. 
-            Its architecture captures vapour from sublimating ice and redistributes it through micro-porous interfaces that 
-            slowly rehydrate a dormant payload of microorganisms, enabling long-term, low-rate microbial activity in the 
+            The Subsurface Microbial Module (SMM) is a vertically stratified bioreactor that houses extremophile consortia.
+            Its architecture captures vapour from sublimating ice and redistributes it through micro-porous interfaces that
+            slowly rehydrate a dormant payload of microorganisms, enabling long-term, low-rate microbial activity in the
             Martian subsurface.
           </p>
         </div>
 
-        <div class="smm-layout">
-          <div class="smm-stack">
-            <div class="smm-pod">
-              <div class="smm-pod-header">
-                <div class="smm-pod-title">Vertical Microbial Stack</div>
-                <div class="smm-layer-tag">Tri-layer consortia</div>
-              </div>
-
-              <p class="smm-layer-caption">
-                Each SMM pod contains three functional layers, optimized for light availability, redox gradients 
-                and contact with the surrounding regolith.
-              </p>
-
-              <div class="smm-layers">
-                <div>
-                  <div class="smm-layer layer-photo"></div>
-                  <div class="smm-layer-caption"><strong>Phototrophic cyanobacteria</strong><br>Far-red photosynthesis and EPS soil stabilization.</div>
-                </div>
-                <div>
-                  <div class="smm-layer layer-chemo"></div>
-                  <div class="smm-layer-caption"><strong>Mineral-weathering chemolithotrophs</strong><br>Dissolve basalt and release essential ions.</div>
-                </div>
-                <div>
-                  <div class="smm-layer layer-perch"></div>
-                  <div class="smm-layer-caption"><strong>Perchlorate-reducing bacteria</strong><br>Detoxify oxidized regolith horizons.</div>
-                </div>
-              </div>
-
-              <div class="smm-badge-row">
-                <div class="smm-badge">Confined ecosystem</div>
-                <div class="smm-badge">Passive energy capture</div>
-                <div class="smm-badge">Micro-porous interfaces</div>
-              </div>
+        <div class="smm-wrapper">
+          <!-- LEFT CALLOUTS: biological layers -->
+          <div class="smm-callouts smm-callouts-left">
+            <div class="smm-callout">
+              <h3>Phototrophic layer</h3>
+              <p>Far-red–adapted cyanobacteria stabilize the interface and fix carbon, forming the first biofilm barrier.</p>
             </div>
-
-            <div class="smm-systems">
-              <div class="smm-system">
-                <div class="smm-system-icon">⌀</div>
-                <div>
-                  <strong>Controlled exchange with regolith.</strong><br>
-                  The shell allows diffusion of gases and vapours while retaining cells and complex organics, 
-                  preventing uncontrolled biological dispersal.
-                </div>
-              </div>
-              <div class="smm-system">
-                <div class="smm-system-icon">☾</div>
-                <div>
-                  <strong>Metabolic dormancy &amp; slow activation.</strong><br>
-                  Extremophile strains are delivered in a low-activity state, awakening gradually as temperature 
-                  and water availability oscillate with Martian diurnal cycles.
-                </div>
-              </div>
-              <div class="smm-system">
-                <div class="smm-system-icon">∞</div>
-                <div>
-                  <strong>Decadal-scale operation.</strong><br>
-                  SMM pods are designed for lifetimes measured in Martian decades, steadily conditioning their 
-                  surrounding regolith without requiring continuous power.
-                </div>
-              </div>
+            <div class="smm-callout">
+              <h3>Mineral-weathering guild</h3>
+              <p>Chemolithotrophs accelerate basalt weathering, releasing Fe, Mg and trace elements into porewaters.</p>
+            </div>
+            <div class="smm-callout">
+              <h3>Perchlorate reducers</h3>
+              <p>Specialized extremophiles convert perchlorates into less reactive species, gently detoxifying the regolith.</p>
             </div>
           </div>
 
-          <div class="card">
-            <h3>Engineering &amp; Operations</h3>
-            <p>
-              SMM deployment is handled by autonomous rovers operating inside selected Arcadia domes. Each pod is 
-              emplaced a few meters below the surface, in contact with shallow ice-bearing layers. Onboard telemetry 
-              provides low-bandwidth monitoring of internal pressure, temperature and key metabolic indicators.
-            </p>
+          <!-- CENTRAL VISUAL: exploded view + 3D model -->
+          <div class="smm-visual">
+            <figure class="smm-image-frame">
+              <img src="SMM-EXPLODED.png" alt="Exploded view of the Subsurface Microbial Module" class="smm-image" />
+            </figure>
 
-            <ul class="science-list">
-              <li>Fully self-contained bioreactor with replaceable cartridges.</li>
-              <li>Modular arrays allow fine control of biological loading per dome.</li>
-              <li>Failsafe modes include cold-trapping and chemical passivation.</li>
-              <li>All microbial strains are selected from naturally extremophilic lineages and remain confined to the pod.</li>
-            </ul>
+            <div class="smm-3d-block">
+              <!-- Placeholder 3D model: replace src with your own smm-module.glb in a models/ folder on GitHub -->
+              <model-viewer
+                src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                alt="Interactive 3D model of the SMM"
+                auto-rotate
+                camera-controls
+                ar
+                disable-zoom="false"
+                class="smm-model-viewer">
+              </model-viewer>
+              <p class="smm-3d-caption">Rotate, zoom and explore the SMM in 3D. Replace the demo model with your own .glb file when ready.</p>
+            </div>
+          </div>
 
-            <p class="science-metric">
-              <strong>Target performance:</strong> measurable reduction in perchlorate content and improved 
-              water retention within a few meters of each SMM after &lt; 10 Martian years of operation.
-            </p>
+          <!-- RIGHT CALLOUTS: operations & role -->
+          <div class="smm-callouts smm-callouts-right">
+            <div class="smm-callout">
+              <h3>Deployment in Arcadia domes</h3>
+              <p>Autonomous rovers emplace SMM pods a few meters below the surface, in contact with shallow ice-bearing layers.</p>
+            </div>
+            <div class="smm-callout">
+              <h3>Confined biosecurity</h3>
+              <p>Gas and vapour exchange with the regolith is allowed, while cells and complex organics remain confined inside.</p>
+            </div>
+            <div class="smm-callout">
+              <h3>Decadal-scale operation</h3>
+              <p>Designed for lifetimes of multiple Martian decades, conditioning the surrounding regolith with minimal power.</p>
+            </div>
           </div>
         </div>
       </div>
