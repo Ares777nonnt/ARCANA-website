@@ -630,8 +630,8 @@
     .smm-callouts {
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* evenly distributes callouts to align with PNG layers */
-      height: 100%; /* stretch container to match image height */
+      justify-content: space-between;
+      height: 100%;
       gap: 2rem;
     }
 
@@ -1279,7 +1279,9 @@
             </figure>
 
             <div class="smm-3d-block">
-              <!-- Placeholder 3D model: replace src with your own smm-module.glb in a models/ folder on GitHub -->
+              <!-- Using a known-good demo model to avoid texture loading errors.
+                   When your own smm-module.glb is re-exported with embedded textures, change the src below to:
+                   src="https://raw.githubusercontent.com/Ares777nonnt/ARCANA-website/main/models/smm-module.glb" -->
               <model-viewer
                 src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
                 alt="Interactive 3D model of the SMM"
@@ -1289,7 +1291,7 @@
                 disable-zoom="false"
                 class="smm-model-viewer">
               </model-viewer>
-              <p class="smm-3d-caption">Rotate, zoom and explore the SMM in 3D. Replace the demo model with your own .glb file when ready.</p>
+              <p class="smm-3d-caption">Demo 3D model loaded without errors. Swap in your SMM .glb once its textures are fully embedded.</p>
             </div>
           </div>
 
