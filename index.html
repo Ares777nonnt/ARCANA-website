@@ -630,7 +630,9 @@
     .smm-callouts {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      justify-content: space-between; /* evenly distributes callouts to align with PNG layers */
+      height: 100%; /* stretch container to match image height */
+      gap: 2rem;
     }
 
     .smm-callout {
