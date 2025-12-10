@@ -616,6 +616,18 @@
     }
 
     /* SMM section */
+    @media(max-width:768px){
+      .smm-layout{
+        grid-template-columns:minmax(0,1fr);
+      }
+      .smm-stack{
+        order:2;
+      }
+      .smm-image, model-viewer{
+        width:100%; height:auto;
+      }
+    }
+    /* SMM section */
     .smm-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
